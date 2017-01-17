@@ -76,6 +76,7 @@ function tweet(){
 //if a song is not provided, information about "the sign" by Ace of Base is shown
 function spotifySong(){
 
+	console.log(additionalArgs);
 	// if user specifies a song
 	if (additionalArgs) {
 		spotify.search({ type: 'track', query: additionalArgs, limit: 1 }, function(err, data) {
@@ -87,21 +88,21 @@ function spotifySong(){
 			
 			console.log("Artist(s):")
 			// Loops through the array of artists, and console logs the names
-			for (var i = 0; i < data.tracks.items[1].artists.length; i++){
-				console.log(data.tracks.items[1].artists[i].name);
+			for (var i = 0; i < data.tracks.items[0].artists.length; i++){
+				console.log(data.tracks.items[0].artists[i].name);
 			} 
 			console.log("");
 			console.log("Song:");
 			// console logs name of the song
-			console.log(data.tracks.items[1].name);
+			console.log(data.tracks.items[0].name);
 			console.log("");
 			console.log("Link:");
 			// console logs preview URL for the song
-			console.log(data.tracks.items[1].preview_url);
+			console.log(data.tracks.items[0].preview_url);
 			console.log("");
 			console.log("Album:")
 			// console logs name of the album that the song is from
-			console.log(data.tracks.items[1].album.name);
+			console.log(data.tracks.items[0].album.name);
 
 
 		}); // Callback function ends here
@@ -117,21 +118,21 @@ function spotifySong(){
 
 			console.log("Artist(s):")
 			// Loops through the array of artists, and console logs the names
-			for (var i = 0; i < data.tracks.items[1].artists.length; i++){
-				console.log(data.tracks.items[1].artists[i].name);
+			for (var i = 0; i < data.tracks.items[0].artists.length; i++){
+				console.log(data.tracks.items[0].artists[i].name);
 			} 
 			console.log("");
 			console.log("Song:");
 			// console logs name of the song
-			console.log(data.tracks.items[1].name);
+			console.log(data.tracks.items[0].name);
 			console.log("");
 			console.log("Link:");
 			// console logs preview URL for the song
-			console.log(data.tracks.items[1].preview_url);
+			console.log(data.tracks.items[0].preview_url);
 			console.log("");
 			console.log("Album:")
 			// console logs name of the album that the song is from
-			console.log(data.tracks.items[1].album.name);
+			console.log(data.tracks.items[0].album.name);
 		}); // callback function ends here
 	}
 
@@ -139,3 +140,4 @@ function spotifySong(){
 } //spotifySong function ends here
 
 // =======================================================================
+
