@@ -224,3 +224,44 @@ function movieInfo(){
 	}
 
 } //movieInfo function ends here.
+
+// ===================================================================
+
+// This function reads a file and carries out the commands in the file
+
+function justDoIt(){
+
+	fs.readFile("random.txt", "utf8", function(error, data){
+
+		if (error){
+
+			console.log(error);
+			return;
+		}
+
+
+		var instructions = data.split(",");
+		var action = instructions[0];
+		if (instructions.length > 1){
+			additionalArgs = instructions[1];
+		}
+
+		switch (action){
+
+			case "my-tweets":
+				tweet()
+				break;
+
+			case "spotify-this-song":
+				spotifySong()
+				break;
+
+			case "movie-this":
+				movieInfo()
+				break;
+
+		}
+
+	}); //callback function ends here
+
+} // justDoIt function ends here.
