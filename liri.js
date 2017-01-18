@@ -76,7 +76,6 @@ function tweet(){
 //if a song is not provided, information about "the sign" by Ace of Base is shown
 function spotifySong(){
 
-	console.log(additionalArgs);
 	// if user specifies a song
 	if (additionalArgs) {
 		spotify.search({ type: 'track', query: additionalArgs, limit: 1 }, function(err, data) {
@@ -104,12 +103,12 @@ function spotifySong(){
 			// console logs name of the album that the song is from
 			console.log(data.tracks.items[0].album.name);
 
-
+			return;
 		}); // Callback function ends here
 	}
 	// if user does not specify a song
 	else{
-		spotify.search({ type: 'track', query: 'The Sign', limit: 1 }, function(err, data) {
+		spotify.search({ type: 'track', query: 'The Sign by Ace of Base', limit: 1 }, function(err, data) {
 			//console log an error, if there is one.
     		if ( err ) {
         		console.log('Error occurred: ' + err);
@@ -133,6 +132,8 @@ function spotifySong(){
 			console.log("Album:")
 			// console logs name of the album that the song is from
 			console.log(data.tracks.items[0].album.name);
+
+			return;
 		}); // callback function ends here
 	}
 
@@ -141,3 +142,85 @@ function spotifySong(){
 
 // =======================================================================
 
+// This function shows information about a movie that a user inputs.
+// If the user does not input the name of a movie, then the function would return information about Mr. Nobody
+
+function movieInfo(){
+
+	// if the user specifies a movie name
+	if (additionalArgs){
+		//delete the spaces at the ends, and replace the spaces in the middle
+		// with + sign
+		var movie = additionalArgs.trim().replace(/\s/g, "+");
+		// built a query to pass to request npm
+		var movieQuery = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&r=json";
+
+		// run the request npm, and run a callback function
+		request(movieQuery, function (error, response, body) {
+  			
+			// if there is no error, and the page responds
+  			if (!error && response.statusCode == 200) {
+  				// change the body into a JSON object
+    			var info = JSON.parse(body);
+
+    			//Title of the movie.
+    			console.log("Title: " + info.Title);
+				//Year the movie came out.
+				console.log("Year: " + info.Year);
+				//IMDB Rating of the movie.
+				console.log("IMDB Rating: " + info.imdbRating);
+				//Country where the movie was produced.
+				console.log("Country: " + info.Country);
+				//Language of the movie.
+				console.log("Language: " + info.Language);
+				//Plot of the movie.
+				console.log("Plot: " + info.Plot);
+				//Actors in the movie.
+				console.log("Actors: " + info.Actors);
+				//Rotten Tomatoes Rating.
+				console.log("Rotten Tomatoes Rating: ");
+				//Rotten Tomatoes URL.
+				console.log("Rotten Tomatoes URL: ");
+				return;
+
+  			}
+		}); // request ends here
+
+
+	}
+	// if the user does not specify a movie name.
+	else {
+
+		request("http://www.omdbapi.com/?t=Mr+Nobody&y=&plot=full&r=json", function (error, response, body) {
+  			
+			// if there is no error, and the page responds
+  			if (!error && response.statusCode == 200) {
+  				// change the body into a JSON object
+    			var info = JSON.parse(body);
+    			
+    			//Title of the movie.
+    			console.log("Title: " + info.Title);
+				//Year the movie came out.
+				console.log("Year: " + info.Year);
+				//IMDB Rating of the movie.
+				console.log("IMDB Rating: " + info.imdbRating);
+				//Country where the movie was produced.
+				console.log("Country: " + info.Country);
+				//Language of the movie.
+				console.log("Language: " + info.Language);
+				//Plot of the movie.
+				console.log("Plot: " + info.Plot);
+				//Actors in the movie.
+				console.log("Actors: " + info.Actors);
+				//Rotten Tomatoes Rating.
+				console.log("Rotten Tomatoes Rating: ");
+				//Rotten Tomatoes URL.
+				console.log("Rotten Tomatoes URL: ");
+				return;
+			}
+		}); //call back function ends here
+
+
+	}
+
+} //movieInfo function ends here.
