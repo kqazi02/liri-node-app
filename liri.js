@@ -153,45 +153,10 @@ function movieInfo(){
 		// with + sign
 		var movie = additionalArgs.trim().replace(/\s/g, "+");
 		// built a query to pass to request npm
-		var movieQuery = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&r=json";
+		var movieQuery = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&r=json&tomatoes=true";
 
 		// run the request npm, and run a callback function
 		request(movieQuery, function (error, response, body) {
-  			
-			// if there is no error, and the page responds
-  			if (!error && response.statusCode == 200) {
-  				// change the body into a JSON object
-    			var info = JSON.parse(body);
-
-    			//Title of the movie.
-    			console.log("Title: " + info.Title);
-				//Year the movie came out.
-				console.log("Year: " + info.Year);
-				//IMDB Rating of the movie.
-				console.log("IMDB Rating: " + info.imdbRating);
-				//Country where the movie was produced.
-				console.log("Country: " + info.Country);
-				//Language of the movie.
-				console.log("Language: " + info.Language);
-				//Plot of the movie.
-				console.log("Plot: " + info.Plot);
-				//Actors in the movie.
-				console.log("Actors: " + info.Actors);
-				//Rotten Tomatoes Rating.
-				console.log("Rotten Tomatoes Rating: ");
-				//Rotten Tomatoes URL.
-				console.log("Rotten Tomatoes URL: ");
-				return;
-
-  			}
-		}); // request ends here
-
-
-	}
-	// if the user does not specify a movie name.
-	else {
-
-		request("http://www.omdbapi.com/?t=Mr+Nobody&y=&plot=full&r=json", function (error, response, body) {
   			
 			// if there is no error, and the page responds
   			if (!error && response.statusCode == 200) {
@@ -213,9 +178,44 @@ function movieInfo(){
 				//Actors in the movie.
 				console.log("Actors: " + info.Actors);
 				//Rotten Tomatoes Rating.
-				console.log("Rotten Tomatoes Rating: ");
+				console.log("Rotten Tomatoes Rating: " + info.tomatoRating);
 				//Rotten Tomatoes URL.
-				console.log("Rotten Tomatoes URL: ");
+				console.log("Rotten Tomatoes URL: " + info.tomatoURL);
+				return;
+
+  			}
+		}); // request ends here
+
+
+	}
+	// if the user does not specify a movie name.
+	else {
+
+		request("http://www.omdbapi.com/?t=Mr+Nobody&y=&plot=full&r=json&tomatoes=true", function (error, response, body) {
+  			
+			// if there is no error, and the page responds
+  			if (!error && response.statusCode == 200) {
+  				// change the body into a JSON object
+    			var info = JSON.parse(body);
+    			
+    			//Title of the movie.
+    			console.log("Title: " + info.Title);
+				//Year the movie came out.
+				console.log("Year: " + info.Year);
+				//IMDB Rating of the movie.
+				console.log("IMDB Rating: " + info.imdbRating);
+				//Country where the movie was produced.
+				console.log("Country: " + info.Country);
+				//Language of the movie.
+				console.log("Language: " + info.Language);
+				//Plot of the movie.
+				console.log("Plot: " + info.Plot);
+				//Actors in the movie.
+				console.log("Actors: " + info.Actors);
+				//Rotten Tomatoes Rating.
+				console.log("Rotten Tomatoes Rating: " + info.tomatoRating);
+				//Rotten Tomatoes URL.
+				console.log("Rotten Tomatoes URL: " + info.tomatoURL);
 				return;
 			}
 		}); //call back function ends here
