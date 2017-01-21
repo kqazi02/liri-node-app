@@ -17,6 +17,10 @@ if (process.argv.length > 2) {
 	}
 }
 
+var textToLog = action + " " + additionalArgs + "\n";
+
+logInput(textToLog);
+
 switch (action){
 
 	case "my-tweets":
@@ -265,3 +269,18 @@ function justDoIt(){
 	}); //callback function ends here
 
 } // justDoIt function ends here.
+
+// ======================================================
+
+// This function log the user input to a .txt file.
+
+function logInput(input){
+
+	//append the input to a file.
+	fs.appendFile("log.txt", input, function(error){
+		if (error){
+			console.log (error);
+		}
+		return;
+	}) //append file ends here.
+} //logInput ends here
