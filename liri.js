@@ -24,20 +24,19 @@ logInput(textToLog);
 switch (action){
 
 	case "my-tweets":
-		tweet()
+		tweet();
 		break;
 
 	case "spotify-this-song":
-		songName = process.argv[3];
-		spotifySong(songName)
+		spotifySong();
 		break;
 
 	case "movie-this":
-		movieInfo()
+		movieInfo();
 		break;
 
 	case "do-what-it-says":
-		justDoIt()
+		justDoIt();
 		break;
 }
 
@@ -70,7 +69,7 @@ function tweet(){
 
 		return;
 
-	}) //client.get callback function ends here
+	}); //client.get callback function ends here
 
 } // tweet function ends here
 
@@ -89,7 +88,7 @@ function spotifySong(){
         		return;
     		}
 			
-			console.log("Artist(s):")
+			console.log("Artist(s):");
 			// Loops through the array of artists, and console logs the names
 			for (var i = 0; i < data.tracks.items[0].artists.length; i++){
 				console.log(data.tracks.items[0].artists[i].name);
@@ -103,7 +102,7 @@ function spotifySong(){
 			// console logs preview URL for the song
 			console.log(data.tracks.items[0].preview_url);
 			console.log("");
-			console.log("Album:")
+			console.log("Album:");
 			// console logs name of the album that the song is from
 			console.log(data.tracks.items[0].album.name);
 
@@ -119,7 +118,7 @@ function spotifySong(){
         		return;
     		}
 
-			console.log("Artist(s):")
+			console.log("Artist(s):");
 			// Loops through the array of artists, and console logs the names
 			for (var i = 0; i < data.tracks.items[0].artists.length; i++){
 				console.log(data.tracks.items[0].artists[i].name);
@@ -133,7 +132,7 @@ function spotifySong(){
 			// console logs preview URL for the song
 			console.log(data.tracks.items[0].preview_url);
 			console.log("");
-			console.log("Album:")
+			console.log("Album:");
 			// console logs name of the album that the song is from
 			console.log(data.tracks.items[0].album.name);
 
@@ -253,15 +252,15 @@ function justDoIt(){
 		switch (action){
 
 			case "my-tweets":
-				tweet()
+				tweet();
 				break;
 
 			case "spotify-this-song":
-				spotifySong()
+				spotifySong();
 				break;
 
 			case "movie-this":
-				movieInfo()
+				movieInfo();
 				break;
 
 		}
@@ -282,5 +281,5 @@ function logInput(input){
 			console.log (error);
 		}
 		return;
-	}) //append file ends here.
+	}); //append file ends here.
 } //logInput ends here
