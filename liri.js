@@ -294,7 +294,7 @@ function logInput(input){
 
 function defaultFunction(){
 
-	console.log("Please enter one of the following commands:")
+	console.log("Please enter one of the following commands:");
 
 	console.log("my-tweets \nspotify-this-song (name of the song - optional) \nmovie-this (name of the movie - optional) \ndo-what-it-says");
 
