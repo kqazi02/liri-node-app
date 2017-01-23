@@ -38,6 +38,9 @@ switch (action){
 	case "do-what-it-says":
 		justDoIt();
 		break;
+	default :
+		defaultFunction();
+		break;
 }
 
 // ======================================================================
@@ -283,3 +286,17 @@ function logInput(input){
 		return;
 	}); //append file ends here.
 } //logInput ends here
+
+// =====================================================
+
+//This is a default function in case the user enters
+// incorrect command
+
+function defaultFunction(){
+
+	console.log("Please enter one of the following commands:")
+
+	console.log("my-tweets \nspotify-this-song (name of the song - optional) \nmovie-this (name of the movie - optional) \ndo-what-it-says");
+
+	return;
+}
